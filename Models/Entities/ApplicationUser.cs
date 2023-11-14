@@ -1,4 +1,4 @@
-﻿using JWT.Demo.Models.Authentication;
+﻿using JWT.Demo.DTOs.AuthenticationDTOs;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 

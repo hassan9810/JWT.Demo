@@ -1,6 +1,6 @@
-﻿namespace JWT.Demo.Models.Authentication
+﻿namespace JWT.Demo.DTOs.AuthenticationDTOs
 {
-    public class RoleModel
+    public class RoleDTO
     {
         public string UserId { get; set; }
         public string Role { get; set; }
