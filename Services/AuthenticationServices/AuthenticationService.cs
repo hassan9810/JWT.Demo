@@ -1,4 +1,5 @@
 ﻿using Azure;
+using JWT.Demo.DTOs.AuthenticationDTOs;
 using JWT.Demo.Helpers.Extensions;
 using JWT.Demo.Models.Authentication;
 using JWT.Demo.Models.Entities;
@@ -27,13 +28,13 @@ namespace JWT.Demo.Services.AuthenticationServices
         }
 
         #region Register
-        public async Task<AuthenticationModel> RegisterAsync(RegisterModel model)
+        public async Task<AuthenticationDTO> RegisterAsync(RegisterDTO model)
         {
             if (await _userManager.FindByEmailAsync(model.Email) is not null)
-                return new AuthenticationModel { Message = "Email is already registered!" };
+                return new AuthenticationDTO { Message = "Email is already registered!" };
 
             if (await _userManager.FindByNameAsync(model.Username) is not null)
-                return new AuthenticationModel { Message = "Username is already registered!" };
+                return new AuthenticationDTO { Message = "Username is already registered!" };
 
             var user = new ApplicationUser
             {
@@ -52,7 +53,7 @@ namespace JWT.Demo.Services.AuthenticationServices
                 foreach (var error in result.Errors)
                     errors += $"{error.Description},";
 
-                return new AuthenticationModel { Message = errors };
+                return new AuthenticationDTO { Message = errors };
             }
 
             await _userManager.AddToRoleAsync(user, "User");
@@ -63,7 +64,7 @@ namespace JWT.Demo.Services.AuthenticationServices
             user.RefreshTokens?.Add(refreshToken);
             await _userManager.UpdateAsync(user);
 
-            return new AuthenticationModel
+            return new AuthenticationDTO
             {
                 Email = user.Email,
                 ExpiresOn = jwtSecurityToken.ValidTo,
@@ -78,9 +79,9 @@ namespace JWT.Demo.Services.AuthenticationServices
         #endregion
 
         #region GetTokenAsync
-        public async Task<AuthenticationModel> LoginAsync(LoginModel model)
+        public async Task<AuthenticationDTO> LoginAsync(LoginDTO model)
         {
-            var authModel = new AuthenticationModel();
+            var authModel = new AuthenticationDTO();
 
             var user = await _userManager.FindByEmailAsync(model.Email);
 
@@ -120,7 +121,7 @@ namespace JWT.Demo.Services.AuthenticationServices
         #endregion
 
         #region AssignRolesToUsers
-        public async Task<string> AddRoleAsync(RoleModel model)
+        public async Task<string> AddRoleAsync(RoleDTO model)
         {
             var user = await _userManager.FindByIdAsync(model.UserId);
 
@@ -137,9 +138,9 @@ namespace JWT.Demo.Services.AuthenticationServices
         #endregion
 
         #region GetTokenByRefreshToken 
-        public async Task<AuthenticationModel> GetRefreshTokenAsync(string token)
+        public async Task<AuthenticationDTO> GetRefreshTokenAsync(string token)
         {
-            var authModel = new AuthenticationModel();
+            var authModel = new AuthenticationDTO();
 
             var user = await _userManager.Users.SingleOrDefaultAsync(u => u.RefreshTokens.Any(t => t.Token == token));
 

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace JWT.Demo.Models.Authentication
+namespace JWT.Demo.DTOs.AuthenticationDTOs
 {
-    public class RegisterModel
+    public class RegisterDTO
     {
         [StringLength(100)]
         public string FirstName { get; set; }

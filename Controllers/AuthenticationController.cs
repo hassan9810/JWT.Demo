@@ -1,4 +1,5 @@
-﻿using JWT.Demo.Helpers.Methods;
+﻿using JWT.Demo.DTOs.AuthenticationDTOs;
+using JWT.Demo.Helpers.Methods;
 using JWT.Demo.Models.Authentication;
 using JWT.Demo.Services.AuthenticationServices;
 using Microsoft.AspNetCore.Authorization;
@@ -19,7 +20,7 @@ namespace JWT.Demo.Controllers
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> RegisterAsync([FromBody] RegisterModel model)
+        public async Task<IActionResult> RegisterAsync([FromBody] RegisterDTO model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -35,7 +36,7 @@ namespace JWT.Demo.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> GetTokenAsync([FromBody] LoginModel model)
+        public async Task<IActionResult> GetTokenAsync([FromBody] LoginDTO model)
         {
             var result = await _authenticationService.LoginAsync(model);
 
@@ -50,7 +51,7 @@ namespace JWT.Demo.Controllers
 
         [HttpPost("AssignRoleToUser")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AddRoleAsync([FromBody] RoleModel model)
+        public async Task<IActionResult> AddRoleAsync([FromBody] RoleDTO model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

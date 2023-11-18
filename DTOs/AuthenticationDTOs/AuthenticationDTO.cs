@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace JWT.Demo.Models.Authentication
+namespace JWT.Demo.DTOs.AuthenticationDTOs
 {
-    public class AuthenticationModel
+    public class AuthenticationDTO
     {
         public string? Message { get; set; }
         public bool IsAuthenticated { get; set; }

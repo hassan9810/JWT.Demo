@@ -1,4 +1,4 @@
-﻿namespace JWT.Demo.Models.Authentication
+﻿namespace JWT.Demo.DTOs.AuthenticationDTOs
 {
     public class RevokeTokenDTO
     {
