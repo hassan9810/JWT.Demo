@@ -1,11 +1,4 @@
-﻿using JWT.Demo.DTOs.UserDTOs;
-using JWT.Demo.Models.Entities;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-
-namespace JWT.Demo.Controllers
+﻿namespace JWT.Demo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

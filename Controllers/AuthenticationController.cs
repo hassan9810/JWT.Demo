@@ -1,11 +1,4 @@
-﻿using JWT.Demo.DTOs.AuthenticationDTOs;
-using JWT.Demo.Helpers.Methods;
-using JWT.Demo.Models.Authentication;
-using JWT.Demo.Services.AuthenticationServices;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-namespace JWT.Demo.Controllers
+﻿namespace JWT.Demo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -110,7 +103,7 @@ namespace JWT.Demo.Controllers
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> RegisterAsync([FromBody] RegisterModel model)
+        public async Task<IActionResult> RegisterAsync([FromBody] RegisterDTO model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -122,7 +115,7 @@ namespace JWT.Demo.Controllers
 
             if (!string.IsNullOrEmpty(result.RefreshToken))
             {
-                var authenticationModel = new AuthenticationModel
+                var authenticationModel = new AuthenticationDTO
                 {
                     IsAuthenticated = result.IsAuthenticated,
                     Username = result.Username,
@@ -137,7 +130,7 @@ namespace JWT.Demo.Controllers
                 return Ok(authenticationModel);
             }
 
-            var authenticationModelWithoutRefreshToken = new AuthenticationModel
+            var authenticationModelWithoutRefreshToken = new AuthenticationDTO
             {
                 IsAuthenticated = result.IsAuthenticated,
                 Username = result.Username,
@@ -151,7 +144,7 @@ namespace JWT.Demo.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> GetTokenAsync([FromBody] LoginModel model)
+        public async Task<IActionResult> GetTokenAsync([FromBody] LoginDTO model)
         {
             var result = await _authenticationService.LoginAsync(model);
 
@@ -160,7 +153,7 @@ namespace JWT.Demo.Controllers
 
             if (!string.IsNullOrEmpty(result.RefreshToken))
             {
-                var authenticationModel = new AuthenticationModel
+                var authenticationModel = new AuthenticationDTO
                 {
                     IsAuthenticated = result.IsAuthenticated,
                     Username = result.Username,
@@ -175,7 +168,7 @@ namespace JWT.Demo.Controllers
                 return Ok(authenticationModel);
             }
 
-            var authenticationModelWithoutRefreshToken = new AuthenticationModel
+            var authenticationModelWithoutRefreshToken = new AuthenticationDTO
             {
                 IsAuthenticated = result.IsAuthenticated,
                 Username = result.Username,
@@ -211,7 +204,7 @@ namespace JWT.Demo.Controllers
 
         [HttpPost("AssignRoleToUser")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AddRoleAsync([FromBody] RoleModel model)
+        public async Task<IActionResult> AddRoleAsync([FromBody] RoleDTO model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

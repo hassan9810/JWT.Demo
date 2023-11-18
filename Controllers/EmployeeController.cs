@@ -1,15 +1,4 @@
-﻿using JWT.Demo.DTOs.CommandQueryDTOs.EmployeeDTOs;
-using JWT.Demo.DTOs.ResponseDTOs;
-using JWT.Demo.Helpers.GenericSearchFilter;
-using JWT.Demo.Helpers.GenericSort;
-using JWT.Demo.Helpers.Paginations;
-using JWT.Demo.Services.EmployeeServices;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace JWT.Demo.Controllers
+﻿namespace JWT.Demo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -1,0 +1,15 @@
+﻿global using JWT.Demo.Helpers.Methods;
+global using JWT.Demo.DTOs.AuthenticationDTOs;
+global using JWT.Demo.Models.Authentication;
+global using JWT.Demo.Services.AuthenticationServices;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Mvc;
+global using JWT.Demo.DTOs.CommandQueryDTOs.EmployeeDTOs;
+global using JWT.Demo.DTOs.ResponseDTOs;
+global using JWT.Demo.Helpers.GenericSearchFilter;
+global using JWT.Demo.Helpers.GenericSort;
+global using JWT.Demo.Helpers.Paginations;
+global using JWT.Demo.Services.EmployeeServices;
+global using JWT.Demo.DTOs.UserDTOs;
+global using JWT.Demo.Models.Entities;
+global using Microsoft.AspNetCore.Identity;
