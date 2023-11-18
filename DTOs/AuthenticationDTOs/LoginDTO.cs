@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace JWT.Demo.Models.Authentication
+namespace JWT.Demo.DTOs.AuthenticationDTOs
 {
-    public class LoginModel
+    public class LoginDTO
     {
         [EmailAddress]
         public string Email { get; set; }

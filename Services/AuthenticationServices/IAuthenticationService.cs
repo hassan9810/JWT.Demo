@@ -1,13 +1,13 @@
-﻿using JWT.Demo.Models.Authentication;
+﻿using JWT.Demo.DTOs.AuthenticationDTOs;
 
 namespace JWT.Demo.Services.AuthenticationServices
 {
     public interface IAuthenticationService
     {
-        Task<AuthenticationModel> RegisterAsync(RegisterModel model);
-        Task<AuthenticationModel> LoginAsync(LoginModel model);
-        Task<string> AddRoleAsync(RoleModel model);
-        Task<AuthenticationModel> GetRefreshTokenAsync(string token);
+        Task<AuthenticationDTO> RegisterAsync(RegisterDTO model);
+        Task<AuthenticationDTO> LoginAsync(LoginDTO model);
+        Task<string> AddRoleAsync(RoleDTO model);
+        Task<AuthenticationDTO> GetRefreshTokenAsync(string token);
         Task<bool> RevokeTokenAsync(string token);
 
     }
